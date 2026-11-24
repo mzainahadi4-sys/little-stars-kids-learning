@@ -4,51 +4,45 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Little Stars - Kids Learning</title>
-
+<title>Little Stars Kids Learning</title>
 <style>
 *{box-sizing:border-box}
 body{
- margin:0;font-family:Arial,sans-serif;
- background:linear-gradient(135deg,#dff5ff,#eee5ff,#ffe5f1);color:#39345d;
+ margin:0;font-family:Arial,sans-serif;color:#39345d;
+ background:linear-gradient(135deg,#dff5ff,#eee5ff,#ffe5f1);
 }
 header{
  text-align:center;padding:35px 15px;
  background:linear-gradient(135deg,#7967e9,#ee86bb);
  color:white;border-radius:0 0 35px 35px;
- position:relative;overflow:hidden;
 }
-header h1{font-size:36px;margin:5px}
-header p{font-size:18px;margin:9px}
-header .urdu{font-size:22px}
+header h1{font-size:34px;margin:5px}
+header p{font-size:18px}
 .stars{
  display:inline-block;background:white;color:#7258cf;
- border-radius:30px;padding:12px 22px;
- font-size:19px;font-weight:bold;margin-top:10px;
+ border-radius:30px;padding:12px 22px;font-weight:bold;
 }
 main{max-width:850px;margin:auto;padding:18px}
-nav{
- display:grid;grid-template-columns:repeat(3,1fr);
- gap:10px;margin:10px 0 25px;
-}
+nav{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:10px 0 22px}
 nav button{
- border:0;background:#eee8ff;color:#5d4a9e;
- padding:14px 5px;border-radius:17px;
- font-size:15px;font-weight:bold;cursor:pointer;
+ border:0;background:white;color:#624eaa;
+ padding:13px 5px;border-radius:16px;font-weight:bold;
+ font-size:14px;cursor:pointer;
 }
 nav button.active{background:#8068e8;color:white}
 .welcome{text-align:center;padding:12px}
-.welcome h2{color:#785fd4;font-size:27px}
+.welcome h2{color:#785fd4;font-size:25px}
 .welcome p{color:#777}
-.cards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:15px}
 .card{
- background:white;border-radius:24px;padding:22px 10px;
- text-align:center;border:2px solid #eee7ff;
- box-shadow:0 5px 15px #6655a51a;cursor:pointer;
+ background:linear-gradient(145deg,#fff,#f4efff);
+ border-radius:27px;padding:24px 10px;text-align:center;
+ border:3px solid white;
+ box-shadow:0 8px 20px #6450a026;cursor:pointer;
 }
-.card:active{transform:scale(.97)}
-.card .emoji{font-size:48px}
-.card h3{color:#614da8;margin:9px 0 5px}
+.card:active{transform:scale(.96)}
+.emoji{font-size:46px}
+.card h3{color:#614da8;margin:10px 0 5px}
 .card p{font-size:13px;color:#888;margin:0}
 .panel{
  background:white;border-radius:27px;padding:22px 12px;
@@ -56,47 +50,39 @@ nav button.active{background:#8068e8;color:white}
  box-shadow:0 5px 18px #6655a51a;
 }
 .panel h2{color:#765fd1}
-.big-emoji{font-size:85px;margin:12px}
+.big-emoji{font-size:80px;margin:12px}
 .big-letter{font-size:75px;font-weight:bold;color:#8068e8}
-.word{font-size:25px;margin:12px}
-.controls{
- display:flex;justify-content:center;gap:10px;
- flex-wrap:wrap;margin-top:20px;
-}
+.word{font-size:24px;margin:12px}
+.controls{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;margin-top:20px}
 .action{
  border:0;background:#8068e8;color:white;
- padding:14px 20px;border-radius:18px;
- font-size:16px;font-weight:bold;cursor:pointer;
+ padding:13px 17px;border-radius:17px;
+ font-size:15px;font-weight:bold;cursor:pointer;
 }
-.action:active{background:#6049bd}
 .quiz-option{
- display:block;width:90%;max-width:330px;
- margin:10px auto;padding:14px;
- border:2px solid #e7ddff;border-radius:16px;
- background:#f5f0ff;color:#59469e;
- font-size:18px;font-weight:bold;cursor:pointer;
+ display:block;width:90%;max-width:330px;margin:10px auto;
+ padding:14px;border:2px solid #e7ddff;border-radius:16px;
+ background:#f5f0ff;color:#59469e;font-size:18px;font-weight:bold;
 }
 .hidden{display:none}
-footer{text-align:center;padding:25px;color:#999}
+footer{text-align:center;padding:25px;color:#777}
 @media(max-width:400px){
- header h1{font-size:29px}
+ header h1{font-size:28px}
  nav button{font-size:13px}
- .big-letter{font-size:65px}
+ .big-letter{font-size:62px}
 }
 </style>
 </head>
-
 <body>
 
 <header>
 <h1>⭐ Little Stars ⭐</h1>
 <p>Learn, Play & Shine!</p>
-<p class="urdu">کھیلو، سیکھو اور چمکو</p>
+<p style="font-size:22px">کھیلو، سیکھو اور چمکو</p>
 <div class="stars">🌟 My Stars: <span id="starCount">0</span></div>
 </header>
 
 <main>
-
 <nav>
 <button class="active" onclick="showPage('home',this)">🏠 Home</button>
 <button onclick="showPage('abc',this)">🔤 ABC</button>
@@ -110,37 +96,21 @@ footer{text-align:center;padding:25px;color:#999}
 <h2>🌈 Welcome, Little Star!</h2>
 <p>What would you like to learn today?</p>
 </div>
-
 <div class="cards">
 <div class="card" onclick="showPage('abc')">
-<div class="emoji">🔤</div>
-<h3>English ABC</h3>
-<p>Learn A to Z</p>
+<div class="emoji">🔤</div><h3>English ABC</h3><p>Learn A to Z</p>
 </div>
-
 <div class="card" onclick="showPage('urdu')">
-<div class="emoji">📖</div>
-<h3>Urdu Letters</h3>
-<p>اردو حروف سیکھیں</p>
+<div class="emoji">📖</div><h3>Urdu Letters</h3><p>اردو حروف سیکھیں</p>
 </div>
-
 <div class="card" onclick="showPage('numbers')">
-<div class="emoji">🔢</div>
-<h3>Numbers</h3>
-<p>Count from 1 to 10</p>
+<div class="emoji">🔢</div><h3>Numbers</h3><p>Count 1 to 10</p>
 </div>
-
 <div class="card" onclick="showPage('quiz')">
-<div class="emoji">🧩</div>
-<h3>Fun Quiz</h3>
-<p>Play and learn</p>
+<div class="emoji">🧩</div><h3>Fun Quiz</h3><p>Play and learn</p>
 </div>
 </div>
-
-<div class="welcome">
-<h2>✨ You are a shining star! ✨</h2>
-<p>Keep learning every day!</p>
-</div>
+<div class="welcome"><h2>✨ You are a shining star! ✨</h2></div>
 </section>
 
 <section id="abc" class="hidden">
@@ -150,9 +120,9 @@ footer{text-align:center;padding:25px;color:#999}
 <div class="big-emoji" id="abcEmoji">🍎</div>
 <div class="word" id="abcWord">A for Apple</div>
 <div class="controls">
-<button class="action" onclick="previousABC()">⬅ Previous</button>
+<button class="action" onclick="moveABC(-1)">⬅ Previous</button>
 <button class="action" onclick="speakABC()">🔊 Listen</button>
-<button class="action" onclick="nextABC()">Next ➡</button>
+<button class="action" onclick="moveABC(1)">Next ➡</button>
 </div>
 </div>
 </section>
@@ -164,9 +134,9 @@ footer{text-align:center;padding:25px;color:#999}
 <div class="big-emoji" id="urduEmoji">🍎</div>
 <div class="word" id="urduWord">انار</div>
 <div class="controls">
-<button class="action" onclick="previousUrdu()">⬅ پچھلا</button>
+<button class="action" onclick="moveUrdu(-1)">⬅ پچھلا</button>
 <button class="action" onclick="speakUrdu()">🔊 سنیں</button>
-<button class="action" onclick="nextUrdu()">اگلا ➡</button>
+<button class="action" onclick="moveUrdu(1)">اگلا ➡</button>
 </div>
 </div>
 </section>
@@ -174,13 +144,13 @@ footer{text-align:center;padding:25px;color:#999}
 <section id="numbers" class="hidden">
 <div class="panel">
 <h2>🔢 Let's Count!</h2>
-<div class="big-emoji" id="numberEmoji">🍓</div>
-<div class="big-letter" id="numberValue">1</div>
-<div class="word" id="numberWord">One — ایک</div>
+<div class="big-emoji" id="numEmoji">🍓</div>
+<div class="big-letter" id="numValue">1</div>
+<div class="word" id="numWord">One — ایک</div>
 <div class="controls">
-<button class="action" onclick="previousNumber()">⬅ Previous</button>
-<button class="action" onclick="speakNumber()">🔊 Listen</button>
-<button class="action" onclick="nextNumber()">Next ➡</button>
+<button class="action" onclick="moveNum(-1)">⬅ Previous</button>
+<button class="action" onclick="speakNum()">🔊 Listen</button>
+<button class="action" onclick="moveNum(1)">Next ➡</button>
 </div>
 </div>
 </section>
@@ -189,24 +159,23 @@ footer{text-align:center;padding:25px;color:#999}
 <div class="panel">
 <h2>🎯 Fun Learning Quiz</h2>
 <div class="big-emoji">🧠</div>
-<h3 id="question">Which letter comes first?</h3>
+<h3 id="question"></h3>
 <div id="options"></div>
-<p id="quizMessage">Choose the correct answer!</p>
+<p id="message">Choose the correct answer!</p>
 <button class="action" onclick="nextQuestion()">Next Question ➡</button>
 </div>
 </section>
-
 </main>
 
-<footer>Made with ❤️ for Little Learners | Little Stars</footer>
+<footer>Made with ❤️ for Little Learners</footer>
 
 <script>
 let stars=Number(localStorage.getItem("littleStars")||0);
-
 function updateStars(){
  document.getElementById("starCount").textContent=stars;
  localStorage.setItem("littleStars",stars);
 }
+function addStar(){stars++;updateStars()}
 updateStars();
 
 function showPage(page,button){
@@ -214,6 +183,13 @@ function showPage(page,button){
  document.getElementById(page).classList.remove("hidden");
  document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
  if(button)button.classList.add("active");
+ else{
+  const names={home:"Home",abc:"ABC",urdu:"اردو",numbers:"Numbers",quiz:"Quiz"};
+  document.querySelectorAll("nav button").forEach(b=>{
+   if(b.textContent.includes(names[page]))b.classList.add("active");
+  });
+ }
+ window.scrollTo(0,0);
 }
 
 function speak(text,lang){
@@ -225,7 +201,6 @@ function speak(text,lang){
  }
 }
 
-// ENGLISH ABC
 const abc=[
 ["A","🍎","Apple"],["B","⚽","Ball"],["C","🐱","Cat"],
 ["D","🐶","Dog"],["E","🐘","Elephant"],["F","🐟","Fish"],
@@ -237,86 +212,53 @@ const abc=[
 ["V","🚐","Van"],["W","⌚","Watch"],["X","🎵","Xylophone"],
 ["Y","🪀","Yo-yo"],["Z","🦓","Zebra"]
 ];
-
 let ai=0;
 function renderABC(){
  let a=abc[ai];
- document.getElementById("abcLetter").textContent=a[0];
- document.getElementById("abcEmoji").textContent=a[1];
- document.getElementById("abcWord").textContent=a[0]+" for "+a[2];
+ abcLetter.textContent=a[0];abcEmoji.textContent=a[1];
+ abcWord.textContent=a[0]+" for "+a[2];
 }
-function nextABC(){
- ai=(ai+1)%abc.length;
- renderABC();stars++;updateStars();
+function moveABC(n){
+ ai=(ai+n+abc.length)%abc.length;renderABC();addStar();
 }
-function previousABC(){
- ai=(ai-1+abc.length)%abc.length;
- renderABC();
-}
-function speakABC(){
- speak(abc[ai][0]+" for "+abc[ai][2],"en-US");
-}
+function speakABC(){speak(abc[ai][0]+" for "+abc[ai][2],"en-US")}
 
-// URDU LETTERS
 const urdu=[
 ["ا","🍎","انار"],["ب","🦆","بطخ"],["پ","🍇","پھل"],
-["ت","🍉","تربوز"],["ٹ","🦑","ٹماٹر"],["ث","🌳","ثمر"],
-["ج","🛩️","جہاز"],["چ","🌙","چاند"],["ح","🐟","حلوہ"],
-["خ","🐰","خرگوش"],["د","🪣","دودھ"],["ر","🌹","گلاب"],
-["س","🍎","سیب"],["ش","🦁","شیر"],["ف","🐘","فیل"],
-["ک","📚","کتاب"],["گ","🌹","گلاب"],["ل","🍋","لیموں"],
-["م","🐟","مچھلی"],["ن","🍞","نان"],["و","🌹","ورق"],
+["ت","🍉","تربوز"],["ٹ","🍅","ٹماٹر"],["ج","✈️","جہاز"],
+["چ","🌙","چاند"],["خ","🐰","خرگوش"],["د","🥛","دودھ"],
+["ر","🌹","گلاب"],["س","🍎","سیب"],["ش","🦁","شیر"],
+["ف","🐘","فیل"],["ک","📚","کتاب"],["گ","🌹","گلاب"],
+["ل","🍋","لیموں"],["م","🐟","مچھلی"],["ن","🍞","نان"],
 ["ہ","✈️","ہوائی جہاز"],["ی","🖐️","یاد"]
 ];
-
 let ui=0;
 function renderUrdu(){
  let a=urdu[ui];
- document.getElementById("urduLetter").textContent=a[0];
- document.getElementById("urduEmoji").textContent=a[1];
- document.getElementById("urduWord").textContent=a[2];
+ urduLetter.textContent=a[0];urduEmoji.textContent=a[1];urduWord.textContent=a[2];
 }
-function nextUrdu(){
- ui=(ui+1)%urdu.length;
- renderUrdu();stars++;updateStars();
+function moveUrdu(n){
+ ui=(ui+n+urdu.length)%urdu.length;renderUrdu();addStar();
 }
-function previousUrdu(){
- ui=(ui-1+urdu.length)%urdu.length;
- renderUrdu();
-}
-function speakUrdu(){
- speak(urdu[ui][0]+" "+urdu[ui][2],"ur-PK");
-}
+function speakUrdu(){speak(urdu[ui][0]+" "+urdu[ui][2],"ur-PK")}
 
-// NUMBERS
-const numbers=[
+const nums=[
 ["1","One — ایک","🍓"],["2","Two — دو","🐥"],
 ["3","Three — تین","🦋"],["4","Four — چار","🍎"],
 ["5","Five — پانچ","⭐"],["6","Six — چھ","🐠"],
 ["7","Seven — سات","🌈"],["8","Eight — آٹھ","🍊"],
 ["9","Nine — نو","🦋"],["10","Ten — دس","🎈"]
 ];
-
 let ni=0;
-function renderNumber(){
- let a=numbers[ni];
- document.getElementById("numberValue").textContent=a[0];
- document.getElementById("numberWord").textContent=a[1];
- document.getElementById("numberEmoji").textContent=a[2];
+function renderNum(){
+ let a=nums[ni];
+ numValue.textContent=a[0];numWord.textContent=a[1];numEmoji.textContent=a[2];
 }
-function nextNumber(){
- ni=(ni+1)%numbers.length;
- renderNumber();stars++;updateStars();
+function moveNum(n){
+ ni=(ni+n+nums.length)%nums.length;renderNum();addStar();
 }
-function previousNumber(){
- ni=(ni-1+numbers.length)%numbers.length;
- renderNumber();
-}
-function speakNumber(){
- speak(numbers[ni][1],"en-US");
-}
+function speakNum(){speak(nums[ni][1],"en-US")}
 
-// QUIZ
 const questions=[
 {q:"Which letter comes first?",o:["A","B","C"],a:"A"},
 {q:"Which fruit is red?",o:["Banana","Apple","Grapes"],a:"Apple"},
@@ -324,49 +266,33 @@ const questions=[
 {q:"Which animal says Meow?",o:["Dog","Cat","Cow"],a:"Cat"},
 {q:"Which number comes after 4?",o:["3","5","7"],a:"5"}
 ];
-
-let qi=0;
-let answered=false;
-
+let qi=0,answered=false;
 function renderQuiz(){
  let q=questions[qi];
- document.getElementById("question").textContent=q.q;
- document.getElementById("quizMessage").textContent="Choose the correct answer!";
- let box=document.getElementById("options");
- box.innerHTML="";
- answered=false;
-
+ question.textContent=q.q;message.textContent="Choose the correct answer!";
+ options.innerHTML="";answered=false;
  q.o.forEach(option=>{
   let btn=document.createElement("button");
-  btn.className="quiz-option";
-  btn.textContent=option;
+  btn.className="quiz-option";btn.textContent=option;
   btn.onclick=()=>checkAnswer(option);
-  box.appendChild(btn);
+  options.appendChild(btn);
  });
 }
-
 function checkAnswer(answer){
  if(answered)return;
  answered=true;
-
  if(answer===questions[qi].a){
-  document.getElementById("quizMessage").textContent="🎉 Correct! Well done!";
+  message.textContent="🎉 Correct! Well done!";
   stars+=2;updateStars();
  }else{
-  document.getElementById("quizMessage").textContent="😊 Try again in the next question!";
+  message.textContent="😊 Good try! Try the next question.";
  }
 }
-
 function nextQuestion(){
- qi=(qi+1)%questions.length;
- renderQuiz();
+ qi=(qi+1)%questions.length;renderQuiz();
 }
 
-renderABC();
-renderUrdu();
-renderNumber();
-renderQuiz();
+renderABC();renderUrdu();renderNum();renderQuiz();
 </script>
-
 </body>
 </html>

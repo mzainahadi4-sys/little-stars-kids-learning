@@ -4,152 +4,343 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Little Stars Kids Learning</title>
+<title>Little Stars - Kids Learning</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;padding:15px;text-align:center;font-family:Arial;background:linear-gradient(135deg,#dff5ff,#eee5ff,#ffe5f1);color:#333}
-h1,h2{color:#7651a8}
-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:6px}
-button{border:0;border-radius:14px;padding:12px;background:#8b6acb;color:white;font-size:16px;margin:5px}
-.section{display:none;max-width:850px;margin:20px auto}
-.active{display:block}
-.card{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;background:white;border-radius:18px;padding:15px;margin:7px;min-width:90px;box-shadow:0 4px 12px #0001}
-.big{font-size:40px;margin:8px}
-.animal{font-size:55px}
-.quizbox{background:white;padding:20px;border-radius:20px}
-.stars{color:#d99b00;font-weight:bold}
+body{margin:0;font-family:"Trebuchet MS",Arial,sans-serif;background:linear-gradient(135deg,#dff8ff,#f2e7ff,#ffe8f2);color:#39345c}
+header{text-align:center;padding:22px 12px;background:linear-gradient(120deg,#ff9ed2,#9bceff,#b8f2d0);border-radius:0 0 30px 30px}
+header h1{font-size:30px;margin:5px}
+header p{margin:5px}
+.stars{background:#fff;padding:8px 16px;border-radius:20px;display:inline-block;font-weight:bold}
+nav{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;padding:12px}
+button{border:0;border-radius:16px;padding:12px 16px;font-weight:bold;cursor:pointer;background:#fff;color:#493d70;box-shadow:0 3px 8px #7773;font-size:15px}
+button:active{transform:scale(.96)}
+button.main{background:#ff83b7;color:white}
+main{max-width:950px;margin:auto;padding:12px}
+.welcome{background:#fff;border-radius:25px;padding:20px;text-align:center;box-shadow:0 5px 15px #7772}
+.mascot{font-size:65px;animation:bounce 2s infinite}
+@keyframes bounce{50%{transform:translateY(-9px)}}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:13px;margin-top:18px}
+.card{background:white;border-radius:22px;padding:18px 8px;text-align:center;box-shadow:0 4px 12px #7772;cursor:pointer;border:3px solid #fff;transition:.2s}
+.card:hover{transform:translateY(-4px);border-color:#ffc1df}
+.card .emoji{font-size:39px}
+.card h3{font-size:15px;margin:8px 0 2px}
+.page{display:none;background:white;padding:20px;border-radius:24px;margin-top:15px;box-shadow:0 4px 15px #7772}
+.page.active{display:block}
+.page h2{text-align:center;color:#e45b9b}
+.item{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;background:#f2efff;border-radius:18px;padding:14px;margin:6px;min-width:65px;font-size:23px;cursor:pointer}
+.item small{font-size:12px}
+.lesson{background:#fff2f8;padding:15px;border-radius:16px;margin:10px 0}
+.big{font-size:45px;text-align:center;padding:15px}
+#message{text-align:center;font-weight:bold;color:#26956d;min-height:25px}
+input,textarea{padding:12px;border-radius:12px;border:2px solid #ddd;width:100%;margin:8px 0;font-size:16px}
+canvas{width:100%;height:260px;border:3px dashed #d7b4f2;border-radius:15px;touch-action:none}
+footer{text-align:center;padding:25px;color:#777}
 </style>
 </head>
 <body>
+
 <header>
-<h1>⭐ Little Stars ⭐</h1>
-<p>Learn, Play and Shine!</p>
-<p class="stars">🌟 Stars: <span id="starCount">0</span></p>
+ <div class="mascot">🌟🧸🌈</div>
+ <h1>Little Stars</h1>
+ <p>Kids Learning & Fun World</p>
+ <div class="stars">⭐ My Stars: <span id="stars">0</span></div>
 </header>
 
-<nav>
-<button onclick="show('home')">🏠 Home</button>
-<button onclick="show('abc')">ABC</button>
-<button onclick="show('urdu')">اردو</button>
-<button onclick="show('numbers')">Numbers</button>
-<button onclick="show('animals')">🐶 Animals</button>
-<button onclick="show('quiz')">Quiz</button>
-</nav>
-
-<section id="home" class="section active">
-<h2>Welcome Little Star! 🌈</h2>
-<p>Let's learn something new today!</p>
-<div class="card">🔤<p>ABC</p></div>
-<div class="card">ا ب<p>Urdu</p></div>
-<div class="card">🔢<p>Numbers</p></div>
-<div class="card">🐯<p>Animals</p></div>
-<div class="card">🧠<p>Quiz</p></div>
-</section>
-
-<section id="abc" class="section">
-<h2>Learn English ABC</h2>
-<div id="abcList"></div>
-</section>
-
-<section id="urdu" class="section">
-<h2>اردو حروف سیکھیں</h2>
-<div id="urduList"></div>
-</section>
-
-<section id="numbers" class="section">
-<h2>Learn Numbers</h2>
-<div id="numberList"></div>
-</section>
-
-<section id="animals" class="section">
-<h2>Meet the Animals 🐾</h2>
-<p>Tap Sound to hear the animal!</p>
-<div id="animalList"></div>
-</section>
-
-<section id="quiz" class="section">
-<h2>Fun Quiz 🧠</h2>
-<div class="quizbox">
-<h3 id="question"></h3>
-<div id="answers"></div>
-<p id="feedback"></p>
-<button onclick="nextQuestion()">Next Question ➡️</button>
+<main>
+<div id="home">
+ <div class="welcome">
+  <h2>Welcome Little Star! 🎈</h2>
+  <p>Learn, Play, Sing and Smile!</p>
+  <button class="main" onclick="say('Welcome to Little Stars. Let us learn and play!')">🔊 Listen</button>
+ </div>
+ <div class="cards" id="menu"></div>
 </div>
-</section>
+
+<div id="lessonPage" class="page">
+ <button onclick="home()">⬅ Home</button>
+ <h2 id="pageTitle">Learning</h2>
+ <div id="content"></div>
+ <div id="message"></div>
+</div>
+</main>
 
 <footer>Made with ❤️ for Little Stars</footer>
 
 <script>
-let stars=Number(localStorage.getItem("littleStars")||0);
-document.getElementById("starCount").textContent=stars;
+let score=Number(localStorage.getItem("littleStars")||0);
+document.getElementById("stars").textContent=score;
 
-function addStar(){
-stars++;
-localStorage.setItem("littleStars",stars);
-document.getElementById("starCount").textContent=stars;
+function reward(n=1){
+ score+=n;
+ localStorage.setItem("littleStars",score);
+ document.getElementById("stars").textContent=score;
 }
-function show(id){
-document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
-document.getElementById(id).classList.add("active");
+function say(t){
+ if(!("speechSynthesis" in window)){alert("Audio is not supported in this browser.");return}
+ speechSynthesis.cancel();
+ let u=new SpeechSynthesisUtterance(t);
+ u.rate=.85;
+ speechSynthesis.speak(u);
 }
-function speak(word){
-if(!("speechSynthesis" in window)){
-alert("Speech not supported in this browser");return;
+function home(){
+ document.getElementById("home").style.display="block";
+ document.getElementById("lessonPage").classList.remove("active");
+ speechSynthesis.cancel();
 }
-speechSynthesis.cancel();
-let msg=new SpeechSynthesisUtterance(word);
-msg.lang="en-US";msg.rate=0.8;
-speechSynthesis.speak(msg);
+function openPage(title,html){
+ document.getElementById("home").style.display="none";
+ document.getElementById("lessonPage").classList.add("active");
+ document.getElementById("pageTitle").textContent=title;
+ document.getElementById("content").innerHTML=html;
+ document.getElementById("message").textContent="";
+}
+function done(msg="Well done! ⭐"){
+ reward();
+ document.getElementById("message").textContent=msg;
 }
 
-let letters="ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-document.getElementById("abcList").innerHTML=letters.map(x=>
-`<div class="card"><div class="big">${x}</div><button onclick="speak('${x}')">🔊 Listen</button></div>`).join("");
-
-let urdu=["ا","ب","پ","ت","ٹ","ث","ج","چ","ح","خ","د","ڈ","ذ","ر","ڑ","ز","ژ","س","ش","ص","ض","ط","ظ","ع","غ","ف","ق","ک","گ","ل","م","ن","و","ہ","ء","ی"];
-document.getElementById("urduList").innerHTML=urdu.map(x=>
-`<div class="card"><div class="big">${x}</div><button onclick="speak('${x}')">🔊 سنیں</button></div>`).join("");
-
-document.getElementById("numberList").innerHTML=Array.from({length:10},(_,i)=>
-`<div class="card"><div class="big">${i+1}</div><button onclick="speak('${i+1}')">🔊 Listen</button></div>`).join("");
-
-let animals=[
-["🐶","Dog","کتا","Woof woof"],
-["🐱","Cat","بلی","Meow meow"],
-["🐮","Cow","گائے","Moo moo"],
-["🐑","Sheep","بھیڑ","Baa baa"],
-["🦁","Lion","شیر","Roar"],
-["🐘","Elephant","ہاتھی","Trumpet"],
-["🐵","Monkey","بندر","Ooh ooh"],
-["🐴","Horse","گھوڑا","Neigh"],
-["🦆","Duck","بطخ","Quack quack"],
-["🐔","Hen","مرغی","Cluck cluck"]
+let sections=[
+["🔤","ABC English","abc"],["ا","Urdu Letters","urdu"],
+["🔢","Numbers","numbers"],["🐘","Animals","animals"],
+["🍎","Fruits","fruits"],["🎨","Colors","colors"],
+["🔷","Shapes","shapes"],["📖","Noorani Qaida","qaida"],
+["🕌","Islamic Learning","islam"],["🌙","Islamic Information","info"],
+["📚","Heavenly Books","books"],["🤲","Daily Duas","duas"],
+["🎵","Naat Sharif","naat"],["🎬","Kids Cartoons","cartoons"],
+["📜","Stories","stories"],["🎶","Poems & Music","poems"],
+["🧠","General Knowledge","gk"],["📝","Quiz","quiz"],
+["🧩","Games","games"],["🖍️","Drawing","drawing"],
+["🗣️","Speaking Practice","speaking"],["➕","Maths","math"],
+["📅","Days & Months","calendar"],["⏰","Clock","clock"],
+["🎤","Walkie Talkie","walkie"],["👨‍👩‍👧","Parents Corner","parents"]
 ];
-document.getElementById("animalList").innerHTML=animals.map(a=>
-`<div class="card"><div class="animal">${a[0]}</div><b>${a[1]}</b><p>${a[2]}</p><button onclick="speak('${a[3]}')">🔊 Sound</button></div>`).join("");
+document.getElementById("menu").innerHTML=sections.map(s=>
+`<div class="card" onclick="openSection('${s[2]}')"><div class="emoji">${s[0]}</div><h3>${s[1]}</h3></div>`
+).join("");
 
-let questions=[
-{q:"Which letter comes first?",a:["A","B","C"],c:"A"},
-{q:"How many fingers on one hand?",a:["3","5","8"],c:"5"},
-{q:"Which animal says Meow?",a:["Dog","Cat","Cow"],c:"Cat"},
-{q:"Which number comes after 2?",a:["1","3","5"],c:"3"},
-{q:"Which animal is شیر?",a:["Lion","Duck","Horse"],c:"Lion"}
-];
-let qi=0;
-function loadQuestion(){
-let q=questions[qi];
-document.getElementById("question").textContent=q.q;
-document.getElementById("feedback").textContent="";
-document.getElementById("answers").innerHTML=q.a.map(a=>
-`<button onclick="checkAnswer('${a}')">${a}</button>`).join("");
+function grid(items,lang=""){
+ return items.map(x=>`<div class="item" onclick="say('${x.replace(/'/g,"")}');done()">${x}</div>`).join("");
 }
-function checkAnswer(a){
-let q=questions[qi];
-if(a===q.c){document.getElementById("feedback").textContent="Correct! ⭐ Well done!";addStar();}
-else{document.getElementById("feedback").textContent="Try again! 😊";}
+function openSection(id){
+ let html="";
+ switch(id){
+ case "abc":
+ let abc="ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+ html="<p>Tap a letter to hear its name.</p>"+grid(abc);
+ break;
+ case "urdu":
+ html="<p>اردو حروف سیکھیں۔ حرف پر دبائیں۔</p>"+grid("ا ب پ ت ٹ ث ج چ ح خ د ڈ ذ ر ڑ ز ژ س ش ص ض ط ظ ع غ ف ق ک گ ل م ن ں و ہ ھ ء ی ے".split(" "));
+ break;
+ case "numbers":
+ html="<p>Learn counting from 1 to 20.</p>"+grid(Array.from({length:20},(_,i)=>String(i+1)));
+ break;
+ case "animals":
+ html=grid(["🐘 Elephant","🦁 Lion","🐱 Cat","🐶 Dog","🐰 Rabbit","🐼 Panda","🐵 Monkey","🦒 Giraffe","🐻 Bear","🐯 Tiger"]);
+ break;
+ case "fruits":
+ html=grid(["🍎 Apple","🍌 Banana","🍇 Grapes","🍊 Orange","🥭 Mango","🍉 Watermelon","🍓 Strawberry","🍍 Pineapple"]);
+ break;
+ case "colors":
+ html=grid(["🔴 Red","🔵 Blue","🟢 Green","🟡 Yellow","🟣 Purple","🟠 Orange","⚫ Black","⚪ White"]);
+ break;
+ case "shapes":
+ html=grid(["🔴 Circle","🟥 Square","🔺 Triangle","⭐ Star","❤️ Heart","⬛ Rectangle"]);
+ break;
+ case "qaida":
+ html=`<div class="lesson"><h3>نورانی قاعدہ 🌙</h3>
+ <p>عربی حروف کو پہچانیں اور استاد سے درست تلفظ سیکھیں۔</p></div>
+ <h3>عربی حروف</h3>${grid("ا ب ت ث ج ح خ د ذ ر ز س ش ص ض ط ظ ع غ ف ق ك ل م ن و ه لا ء ي".split(" "))}
+ <h3>حرکات کی پہچان</h3>
+ ${grid(["بَ — زبر","بِ — زیر","بُ — پیش","بًا — دو زبر","بٍ — دو زیر","بٌ — دو پیش"])}
+ <p>نوٹ: موبائل کی آواز ہر عربی حرف کا صحیح قرآنی تلفظ نہیں سکھا سکتی۔ قاعدہ کسی مستند قاری یا قاریہ سے بھی پڑھیں۔</p>`;
+ break;
+ case "islam":
+ html=`<div class="lesson"><h3>اسلامی تعلیم 🕌</h3><p>بچوں کے لیے بنیادی دینی معلومات۔</p></div>
+ ${grid(["اللہ ایک ہے","حضرت محمد ﷺ آخری نبی ہیں","نماز","روزہ","زکوٰۃ","حج","کلمہ طیبہ","سلام کرنا","سچ بولنا","والدین کا احترام"])}
+ <p>دینی اسباق بڑوں کی رہنمائی میں پڑھیں۔</p>`;
+ break;
+ case "info":
+ html=grid(["اسلام کے پانچ ارکان","ایمان کے بنیادی عقائد","مسجد","اذان","وضو","نماز","رمضان","عیدالفطر","عیدالاضحی","ہجری کیلنڈر","فرشتے","انبیائے کرام"]);
+ break;
+ case "books":
+ html=`<div class="lesson"><h3>آسمانی کتابیں 📚</h3>
+ <p>اسلامی تعلیمات کے مطابق اللہ تعالیٰ نے اپنے رسولوں پر کتابیں نازل فرمائیں۔</p></div>
+ ${grid(["تورات — حضرت موسیٰؑ","زبور — حضرت داؤدؑ","انجیل — حضرت عیسیٰؑ","قرآن مجید — حضرت محمد ﷺ"])}
+ <p>یہ مختصر تعارف ہے۔ ہر کتاب کی تفصیل مستند دینی استاد سے سیکھیں۔</p>`;
+ break;
+ case "duas":
+ html=`<div class="lesson"><h3>روزمرہ کی دعائیں 🤲</h3>
+ <p>بچوں کو دعائیں صحیح عربی متن اور ترجمے کے ساتھ سکھائیں۔</p></div>
+ ${grid(["کھانے سے پہلے کی دعا","کھانے کے بعد کی دعا","سونے کی دعا","جاگنے کی دعا","گھر سے نکلنے کی دعا","علم میں اضافے کی دعا"])}
+ <p>اس ابتدائی ورژن میں دعا کے عنوانات ہیں؛ مکمل عربی متن مستند کتاب سے شامل کیا جائے گا۔</p>`;
+ break;
+ case "naat":
+ html=`<div class="big">🌹 ﷺ 🌹</div>
+ <h3>نعت شریف</h3>
+ <p>یہاں بچوں کے لیے نعتیں سننے اور پڑھنے کا سیکشن ہے۔</p>
+ <div class="lesson">🎵 نعت آڈیو فائل شامل کرنے کے بعد یہاں Play ہوگا۔</div>
+ <input type="file" accept="audio/*" id="naatFile">
+ <button onclick="playFile('naatFile')">▶ Play Naat</button>
+ <button onclick="stopMedia()">⏸ Stop</button>
+ <audio id="audioPlayer" controls style="width:100%"></audio>`;
+ break;
+ case "cartoons":
+ html=`<div class="big">🐻 🐰 🦁 🐼</div>
+ <h3>Kids Cartoons</h3>
+ <p>تعلیمی اور اخلاقی کارٹون دیکھنے کے لیے اپنی ویڈیو فائل منتخب کریں۔</p>
+ <input type="file" accept="video/*" id="cartoonFile">
+ <video id="videoPlayer" controls style="width:100%;max-height:300px;border-radius:15px"></video>`;
+ break;
+ case "stories":
+ html=`<h3>سبق آموز کہانیاں 📜</h3>
+ ${["The Kind Rabbit","The Honest Boy","The Helpful Friend","The Thirsty Crow"].map((x,i)=>`<div class="lesson"><b>${x}</b><p>${["ایک خرگوش نے اپنے دوست کی مدد کی۔ دوسروں کی مدد کرنا اچھی بات ہے۔","ایک بچے نے ہمیشہ سچ بولا۔ سچائی بہترین عادت ہے۔","دوستوں نے مل کر مسئلہ حل کیا۔ مل جل کر رہنا سیکھیں۔","پیاسے کوے نے سمجھ داری سے پانی پیا۔ عقل سے کام لیں۔"][i]}</p><button onclick="say('${["A rabbit helped his friend. Helping others is good.","A boy always told the truth. Honesty is the best policy.","Friends solved a problem together. Work together.","The thirsty crow used wisdom. Be clever."][i]}')">🔊 Listen</button></div>`).join("")}`;
+ break;
+ case "poems":
+ html=`<h3>Poems & Kids Music 🎶</h3>
+ ${grid(["Twinkle Twinkle Little Star","Baa Baa Black Sheep","Rain Rain Go Away","ننھی منی نظم","پیارے پیارے بچے"])}
+ <p>نظموں کی اصل آڈیو فائل شامل کرنے کے لیے منتخب کریں:</p>
+ <input type="file" accept="audio/*" id="poemFile">
+ <button onclick="playFile('poemFile')">▶ Play Music</button>
+ <audio id="audioPlayer" controls style="width:100%"></audio>`;
+ break;
+ case "gk":
+ html=grid(["دنیا کا سب سے بڑا جانور؟ نیلی وہیل","ہم کس سیارے پر رہتے ہیں؟ زمین","ہفتے میں کتنے دن؟ سات","ایک سال میں کتنے مہینے؟ بارہ","سورج کہاں سے نکلتا ہے؟ مشرق"]);
+ break;
+ case "quiz":
+ quiz();
+ return;
+ case "games":
+ html=`<h3>Number Guessing Game 🎮</h3>
+ <p>1 سے 5 کے درمیان نمبر منتخب کریں۔</p>
+ ${[1,2,3,4,5].map(n=>`<button onclick="guess(${n})">${n}</button>`).join("")}
+ <div id="gameResult"></div>
+ <hr><h3>Animal Guess</h3><p>میں کہتا ہوں میاؤں میاؤں۔ کون؟</p>
+ <button onclick="animalAnswer('Cat')">🐱 Cat</button>
+ <button onclick="animalAnswer('Dog')">🐶 Dog</button>`;
+ break;
+ case "drawing":
+ html=`<h3>اپنی تصویر بنائیں 🖍️</h3>
+ <input type="color" id="paintColor" value="#ff55aa">
+ <button onclick="clearCanvas()">Clear</button>
+ <canvas id="paint"></canvas>`;
+ break;
+ case "speaking":
+ html=`<h3>Speaking Practice 🗣️</h3>
+ <p>نیچے لفظ لکھیں اور آواز سنیں۔</p>
+ <input id="speakText" placeholder="Type a word">
+ <button onclick="say(document.getElementById('speakText').value)">🔊 Speak</button>`;
+ break;
+ case "math":
+ html=`<h3>Easy Maths ➕</h3>
+ <p>2 + 3 = ?</p>
+ <button onclick="mathAnswer(4)">4</button>
+ <button onclick="mathAnswer(5)">5</button>
+ <button onclick="mathAnswer(6)">6</button>
+ <div id="mathResult"></div>`;
+ break;
+ case "calendar":
+ html=grid(["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday","January","February","March","April","May","June","July","August","September","October","November","December"]);
+ break;
+ case "clock":
+ html=`<h3>Learn Time ⏰</h3><div class="big" id="clock"></div><button onclick="showTime()">Show Time</button>`;
+ break;
+ case "walkie":
+ html=`<h3>My Voice Recorder 🎤</h3>
+ <p>اپنی آواز ریکارڈ کریں اور پھر سنیں۔ یہ ریکارڈنگ صرف اسی ڈیوائس پر ہے، دوسرے موبائل سے بات نہیں ہوتی۔</p>
+ <button onclick="recordVoice()">🔴 Start Recording</button>
+ <button onclick="stopRecording()">⏹ Stop</button>
+ <audio id="voicePlayback" controls style="width:100%"></audio>
+ <div id="recordStatus"></div>`;
+ break;
+ case "parents":
+ html=`<h3>Parents Corner 👨‍👩‍👧</h3>
+ <div class="lesson"><b>والدین کے لیے</b>
+ <p>بچے کے ساتھ روزانہ تھوڑا وقت سیکھنے اور کھیلنے میں گزاریں۔</p>
+ <p>بچے کا نام، تصویر یا ذاتی معلومات عوامی طور پر شیئر نہ کریں۔</p>
+ <p>مائیکروفون صرف ریکارڈنگ کے وقت اجازت مانگتا ہے۔</p>
+ <p>اس ویب سائٹ میں بچوں کے لیے کوئی آن لائن چیٹ یا اکاؤنٹ نہیں ہے۔</p></div>`;
+ break;
+ }
+ openPage(sections.find(s=>s[2]===id)[1],html);
+ if(id==="drawing")setupCanvas();
+ if(id==="clock")showTime();
 }
-function nextQuestion(){qi=(qi+1)%questions.length;loadQuestion();}
-loadQuestion();
+
+function quiz(){
+ let questions=[["A کے بعد کون سا حرف ہے؟",["B","D","Z"],0],
+ ["2 + 2 کتنے ہوتے ہیں؟",["3","4","5"],1],
+ ["آسمان کا رنگ کیا ہے؟",["Blue","Green","Black"],0],
+ ["بلی کی آواز کیا ہے؟",["Bark","Meow","Moo"],1]];
+ let q=questions[Math.floor(Math.random()*questions.length)];
+ openPage("Little Quiz 📝",`<h3>${q[0]}</h3>${q[1].map((a,i)=>`<button onclick="quizAnswer(${i},${q[2]})">${a}</button>`).join("")}<div id="quizResult"></div>`);
+}
+function quizAnswer(a,b){
+ document.getElementById("quizResult").textContent=a===b?"Correct! ⭐":"Try again!";
+ if(a===b)reward();
+}
+let secret=Math.floor(Math.random()*5)+1;
+function guess(n){
+ let el=document.getElementById("gameResult");
+ if(n===secret){el.textContent="You won! ⭐";reward();secret=Math.floor(Math.random()*5)+1}
+ else el.textContent="Try again!";
+}
+function animalAnswer(a){
+ document.getElementById("gameResult").textContent=a==="Cat"?"Correct! 🐱":"Try again!";
+ if(a==="Cat")reward();
+}
+function mathAnswer(n){
+ document.getElementById("mathResult").textContent=n===5?"Correct! ⭐":"Try again!";
+ if(n===5)reward();
+}
+function playFile(id){
+ let f=document.getElementById(id).files[0];
+ if(!f){alert("Please choose an audio file first.");return}
+ let player=document.getElementById("audioPlayer");
+ player.src=URL.createObjectURL(f);player.play();
+}
+function stopMedia(){
+ let a=document.getElementById("audioPlayer");
+ if(a){a.pause();a.currentTime=0}
+}
+let recorder,recordedChunks=[];
+async function recordVoice(){
+ try{
+ let stream=await navigator.mediaDevices.getUserMedia({audio:true});
+ recordedChunks=[];
+ recorder=new MediaRecorder(stream);
+ recorder.ondataavailable=e=>{if(e.data.size)recordedChunks.push(e.data)};
+ recorder.onstop=()=>{
+ let blob=new Blob(recordedChunks,{type:"audio/webm"});
+ document.getElementById("voicePlayback").src=URL.createObjectURL(blob);
+ stream.getTracks().forEach(t=>t.stop());
+ };
+ recorder.start();
+ document.getElementById("recordStatus").textContent="Recording...";
+ }catch(e){document.getElementById("recordStatus").textContent="Microphone permission is needed. Use HTTPS."}
+}
+function stopRecording(){
+ if(recorder&&recorder.state!=="inactive"){recorder.stop();document.getElementById("recordStatus").textContent="Recording saved on this device."}
+}
+let drawing=false,ctx;
+function setupCanvas(){
+ let c=document.getElementById("paint");
+ let rect=c.getBoundingClientRect();
+ c.width=rect.width*devicePixelRatio;c.height=260*devicePixelRatio;
+ ctx=c.getContext("2d");ctx.scale(devicePixelRatio,devicePixelRatio);
+ ctx.lineWidth=4;ctx.lineCap="round";
+ function pos(e){let r=c.getBoundingClientRect();return [e.clientX-r.left,e.clientY-r.top]}
+ c.onpointerdown=e=>{drawing=true;let p=pos(e);ctx.beginPath();ctx.moveTo(...p)};
+ c.onpointermove=e=>{if(!drawing)return;let p=pos(e);ctx.strokeStyle=document.getElementById("paintColor").value;ctx.lineTo(...p);ctx.stroke()};
+ c.onpointerup=()=>drawing=false;
+ c.onpointerleave=()=>drawing=false;
+}
+function clearCanvas(){
+ let c=document.getElementById("paint");if(ctx)ctx.clearRect(0,0,c.width,c.height);
+}
+function showTime(){
+ let e=document.getElementById("clock");if(e)e.textContent=new Date().toLocaleTimeString();
+}
 </script>
 </body>
 </html>

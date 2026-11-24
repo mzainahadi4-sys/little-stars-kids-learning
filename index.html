@@ -3,164 +3,370 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Little Stars - Kids Learning</title>
+
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#fff8e9;color:#34405a;text-align:center}
-header{background:linear-gradient(120deg,#7868e6,#f58db4);color:white;padding:25px 12px;border-radius:0 0 30px 30px}
-h1{margin:5px;font-size:32px}
-header p{margin:8px}
-.stars{font-size:20px;background:white;color:#775ed8;padding:10px;border-radius:20px;display:inline-block;margin-top:10px}
-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;padding:15px 5px}
-nav button{border:0;border-radius:18px;padding:11px 15px;background:#e9e3ff;color:#5744a5;font-weight:bold;font-size:14px}
-nav button.active{background:#7868e6;color:white}
-main{padding:12px;max-width:700px;margin:auto}
-h2{color:#725cce}
-.intro{background:white;border-radius:22px;padding:20px;margin:8px 0 18px;box-shadow:0 4px 14px #0000000c}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.tile{background:white;border:3px solid #f0eaff;border-radius:22px;padding:18px 8px;min-height:120px;box-shadow:0 4px 10px #0000000b}
-.tile .big{font-size:42px}
-.tile strong{display:block;font-size:21px;margin:8px}
-.tile small{color:#777}
-.action{border:0;border-radius:20px;background:#7868e6;color:white;padding:12px 20px;font-size:16px;font-weight:bold;margin:10px;cursor:pointer}
-.card{background:white;border-radius:24px;padding:22px;margin:12px 0}
-#lessonEmoji{font-size:90px}
-#lessonLetter{font-size:65px;color:#7868e6;font-weight:bold}
-#lessonWord{font-size:25px;font-weight:bold}
-.urdu{font-size:36px}
-footer{padding:25px;color:#777;font-size:13px}
+body{
+ margin:0;font-family:Arial,sans-serif;
+ background:#fff8e9;color:#39345d;
+}
+header{
+ text-align:center;padding:35px 15px;
+ background:linear-gradient(135deg,#7967e9,#ee86bb);
+ color:white;border-radius:0 0 35px 35px;
+ position:relative;overflow:hidden;
+}
+header h1{font-size:36px;margin:5px}
+header p{font-size:18px;margin:9px}
+header .urdu{font-size:22px}
+.stars{
+ display:inline-block;background:white;color:#7258cf;
+ border-radius:30px;padding:12px 22px;
+ font-size:19px;font-weight:bold;margin-top:10px;
+}
+main{max-width:850px;margin:auto;padding:18px}
+nav{
+ display:grid;grid-template-columns:repeat(3,1fr);
+ gap:10px;margin:10px 0 25px;
+}
+nav button{
+ border:0;background:#eee8ff;color:#5d4a9e;
+ padding:14px 5px;border-radius:17px;
+ font-size:15px;font-weight:bold;cursor:pointer;
+}
+nav button.active{background:#8068e8;color:white}
+.welcome{text-align:center;padding:12px}
+.welcome h2{color:#785fd4;font-size:27px}
+.welcome p{color:#777}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.card{
+ background:white;border-radius:24px;padding:22px 10px;
+ text-align:center;border:2px solid #eee7ff;
+ box-shadow:0 5px 15px #6655a51a;cursor:pointer;
+}
+.card:active{transform:scale(.97)}
+.card .emoji{font-size:48px}
+.card h3{color:#614da8;margin:9px 0 5px}
+.card p{font-size:13px;color:#888;margin:0}
+.panel{
+ background:white;border-radius:27px;padding:22px 12px;
+ text-align:center;margin:15px 0;
+ box-shadow:0 5px 18px #6655a51a;
+}
+.panel h2{color:#765fd1}
+.big-emoji{font-size:85px;margin:12px}
+.big-letter{font-size:75px;font-weight:bold;color:#8068e8}
+.word{font-size:25px;margin:12px}
+.controls{
+ display:flex;justify-content:center;gap:10px;
+ flex-wrap:wrap;margin-top:20px;
+}
+.action{
+ border:0;background:#8068e8;color:white;
+ padding:14px 20px;border-radius:18px;
+ font-size:16px;font-weight:bold;cursor:pointer;
+}
+.action:active{background:#6049bd}
+.quiz-option{
+ display:block;width:90%;max-width:330px;
+ margin:10px auto;padding:14px;
+ border:2px solid #e7ddff;border-radius:16px;
+ background:#f5f0ff;color:#59469e;
+ font-size:18px;font-weight:bold;cursor:pointer;
+}
 .hidden{display:none}
+footer{text-align:center;padding:25px;color:#999}
+@media(max-width:400px){
+ header h1{font-size:29px}
+ nav button{font-size:13px}
+ .big-letter{font-size:65px}
+}
 </style>
 </head>
+
 <body>
+
 <header>
 <h1>⭐ Little Stars ⭐</h1>
 <p>Learn, Play & Shine!</p>
-<p>کھیلو، سیکھو اور چمکو!</p>
-<div class="stars">🌟 My Stars: <span id="score">0</span></div>
+<p class="urdu">کھیلو، سیکھو اور چمکو</p>
+<div class="stars">🌟 My Stars: <span id="starCount">0</span></div>
 </header>
 
+<main>
+
 <nav>
-<button class="active" onclick="show('home',this)">🏠 Home</button>
-<button onclick="show('abc',this)">🔤 ABC</button>
-<button onclick="show('urdu',this)">اردو</button>
-<button onclick="show('numbers',this)">🔢 Numbers</button>
-<button onclick="show('quiz',this)">🎯 Quiz</button>
+<button class="active" onclick="showPage('home',this)">🏠 Home</button>
+<button onclick="showPage('abc',this)">🔤 ABC</button>
+<button onclick="showPage('urdu',this)">اردو</button>
+<button onclick="showPage('numbers',this)">🔢 Numbers</button>
+<button onclick="showPage('quiz',this)">🎯 Quiz</button>
 </nav>
 
-<main>
 <section id="home">
-<div class="intro">
-<h2>Welcome, Little Star! 🌈</h2>
-<p>Let's learn something wonderful today!</p>
-<p>آؤ آج کچھ نیا سیکھیں!</p>
+<div class="welcome">
+<h2>🌈 Welcome, Little Star!</h2>
+<p>What would you like to learn today?</p>
 </div>
-<div class="grid">
-<div class="tile" onclick="show('abc',document.querySelectorAll('nav button')[1])"><div class="big">🔤</div><strong>English ABC</strong><small>Learn letters</small></div>
-<div class="tile" onclick="show('urdu',document.querySelectorAll('nav button')[2])"><div class="big">📖</div><strong>Urdu حروف</strong><small>اردو سیکھیں</small></div>
-<div class="tile" onclick="show('numbers',document.querySelectorAll('nav button')[3])"><div class="big">🔢</div><strong>Numbers</strong><small>Count 1 to 10</small></div>
-<div class="tile" onclick="show('quiz',document.querySelectorAll('nav button')[4])"><div class="big">🏆</div><strong>Fun Quiz</strong><small>Win stars!</small></div>
+
+<div class="cards">
+<div class="card" onclick="showPage('abc')">
+<div class="emoji">🔤</div>
+<h3>English ABC</h3>
+<p>Learn A to Z</p>
+</div>
+
+<div class="card" onclick="showPage('urdu')">
+<div class="emoji">📖</div>
+<h3>Urdu Letters</h3>
+<p>اردو حروف سیکھیں</p>
+</div>
+
+<div class="card" onclick="showPage('numbers')">
+<div class="emoji">🔢</div>
+<h3>Numbers</h3>
+<p>Count from 1 to 10</p>
+</div>
+
+<div class="card" onclick="showPage('quiz')">
+<div class="emoji">🧩</div>
+<h3>Fun Quiz</h3>
+<p>Play and learn</p>
+</div>
+</div>
+
+<div class="welcome">
+<h2>✨ You are a shining star! ✨</h2>
+<p>Keep learning every day!</p>
 </div>
 </section>
 
 <section id="abc" class="hidden">
-<h2>English Alphabet 🔤</h2>
-<div class="card">
-<div id="lessonEmoji">🍎</div>
-<div id="lessonLetter">A</div>
-<div id="lessonWord">Apple</div>
-<button class="action" onclick="speakCurrent()">🔊 Listen</button>
-<br>
-<button class="action" onclick="changeABC(-1)">⬅ Previous</button>
-<button class="action" onclick="changeABC(1)">Next ➡</button>
+<div class="panel">
+<h2>🔤 Learn English ABC</h2>
+<div class="big-letter" id="abcLetter">A</div>
+<div class="big-emoji" id="abcEmoji">🍎</div>
+<div class="word" id="abcWord">A for Apple</div>
+<div class="controls">
+<button class="action" onclick="previousABC()">⬅ Previous</button>
+<button class="action" onclick="speakABC()">🔊 Listen</button>
+<button class="action" onclick="nextABC()">Next ➡</button>
+</div>
 </div>
 </section>
 
 <section id="urdu" class="hidden">
-<h2>Urdu Alphabet 🇵🇰</h2>
-<div class="card">
-<div id="urduLetter" class="urdu">ا</div>
-<div id="urduWord">انار</div>
+<div class="panel">
+<h2>📖 اردو حروف سیکھیں</h2>
+<div class="big-letter" id="urduLetter">ا</div>
+<div class="big-emoji" id="urduEmoji">🍎</div>
+<div class="word" id="urduWord">انار</div>
+<div class="controls">
+<button class="action" onclick="previousUrdu()">⬅ پچھلا</button>
 <button class="action" onclick="speakUrdu()">🔊 سنیں</button>
-<br>
-<button class="action" onclick="changeUrdu(-1)">⬅ پچھلا</button>
-<button class="action" onclick="changeUrdu(1)">اگلا ➡</button>
+<button class="action" onclick="nextUrdu()">اگلا ➡</button>
+</div>
 </div>
 </section>
 
 <section id="numbers" class="hidden">
-<h2>Let's Count! 🔢</h2>
-<div class="card">
-<div id="numberEmoji" style="font-size:65px">🍓</div>
-<div id="numberValue" style="font-size:65px;color:#7868e6;font-weight:bold">1</div>
-<div id="numberWord" style="font-size:24px">One — ایک</div>
-<button class="action" onclick="changeNumber(-1)">⬅ Previous</button>
-<button class="action" onclick="changeNumber(1)">Next ➡</button>
+<div class="panel">
+<h2>🔢 Let's Count!</h2>
+<div class="big-emoji" id="numberEmoji">🍓</div>
+<div class="big-letter" id="numberValue">1</div>
+<div class="word" id="numberWord">One — ایک</div>
+<div class="controls">
+<button class="action" onclick="previousNumber()">⬅ Previous</button>
+<button class="action" onclick="speakNumber()">🔊 Listen</button>
+<button class="action" onclick="nextNumber()">Next ➡</button>
+</div>
 </div>
 </section>
 
 <section id="quiz" class="hidden">
-<h2>⭐ Little Quiz ⭐</h2>
-<div class="card">
-<p id="question" style="font-size:23px">Which letter comes first?</p>
-<div id="answers" class="grid"></div>
-<p id="feedback">Choose your answer!</p>
-<button class="action" onclick="newQuiz()">Next Question ➡</button>
+<div class="panel">
+<h2>🎯 Fun Learning Quiz</h2>
+<div class="big-emoji">🧠</div>
+<h3 id="question">Which letter comes first?</h3>
+<div id="options"></div>
+<p id="quizMessage">Choose the correct answer!</p>
+<button class="action" onclick="nextQuestion()">Next Question ➡</button>
 </div>
 </section>
+
 </main>
 
-<footer>Made with ❤️ for Little Learners<br>English + اردو | Ages 2–8</footer>
+<footer>Made with ❤️ for Little Learners | Little Stars</footer>
 
 <script>
-let stars=Number(localStorage.getItem('littleStars')||0);
-document.getElementById('score').textContent=stars;
-function earn(){stars++;localStorage.setItem('littleStars',stars);document.getElementById('score').textContent=stars}
-function show(id,btn){
-document.querySelectorAll('main section').forEach(s=>s.classList.add('hidden'));
-document.getElementById(id).classList.remove('hidden');
-document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
-btn.classList.add('active');
+let stars=Number(localStorage.getItem("littleStars")||0);
+
+function updateStars(){
+ document.getElementById("starCount").textContent=stars;
+ localStorage.setItem("littleStars",stars);
 }
-const letters=[
-['A','Apple','🍎'],['B','Ball','⚽'],['C','Cat','🐱'],['D','Dog','🐶'],
-['E','Elephant','🐘'],['F','Fish','🐟'],['G','Grapes','🍇'],['H','House','🏠'],
-['I','Ice cream','🍦'],['J','Juice','🧃'],['K','Kite','🪁'],['L','Lion','🦁'],
-['M','Monkey','🐵'],['N','Nest','🪺'],['O','Orange','🍊'],['P','Parrot','🦜'],
-['Q','Queen','👑'],['R','Rabbit','🐰'],['S','Sun','☀️'],['T','Tiger','🐯'],
-['U','Umbrella','☂️'],['V','Van','🚐'],['W','Watch','⌚'],['X','Xylophone','🎵'],
-['Y','Yak','🐂'],['Z','Zebra','🦓']];
-let ai=0;
-function renderABC(){let x=letters[ai];document.getElementById('lessonLetter').textContent=x[0];document.getElementById('lessonWord').textContent=x[1];document.getElementById('lessonEmoji').textContent=x[2]}
-function changeABC(n){ai=(ai+n+26)%26;renderABC();earn()}
-const urdu=[['ا','انار'],['ب','بکری'],['پ','پتنگ'],['ت','تتلی'],['ٹ','ٹماٹر'],['ث','ثواب'],['ج','جہاز'],['چ','چاند'],['ح','حلوہ'],['خ','خرگوش'],['د','درخت'],['ڈ','ڈبہ'],['ذ','ذخیرہ'],['ر','رنگ'],['ڑ','گاڑی'],['ز','زرافہ'],['س','سیب'],['ش','شیر'],['ص','صابن'],['ض','ضد'],['ط','طوطا'],['ظ','ظرف'],['ع','عینک'],['غ','غبارہ'],['ف','فوارہ'],['ق','قلم'],['ک','کتاب'],['گ','گلاب'],['ل','لیموں'],['م','مچھلی'],['ن','ناک'],['و','ورق'],['ہ','ہاتھی'],['ی','یخنی']];
-let ui=0;
-function renderUrdu(){document.getElementById('urduLetter').textContent=urdu[ui][0];document.getElementById('urduWord').textContent=urdu[ui][1]}
-function changeUrdu(n){ui=(ui+n+urdu.length)%urdu.length;renderUrdu();earn()}
-const nums=[['1','One — ایک','🍓'],['2','Two — دو','🍎'],['3','Three — تین','⭐'],['4','Four — چار','🦋'],['5','Five — پانچ','🌸'],['6','Six — چھ','🍊'],['7','Seven — سات','🐠'],['8','Eight — آٹھ','🎈'],['9','Nine — نو','🍉'],['10','Ten — دس','🌟']];
-let ni=0;
-function renderNumber(){let x=nums[ni];document.getElementById('numberValue').textContent=x[0];document.getElementById('numberWord').textContent=x[1];document.getElementById('numberEmoji').textContent=x[2].repeat(Number(x[0]))}
-function changeNumber(n){ni=(ni+n+10)%10;renderNumber();earn()}
-function speakCurrent(){let x=letters[ai];say(x[0]+'. '+x[1],'en-US')}
-function speakUrdu(){say(urdu[ui][0]+'. '+urdu[ui][1],'ur-PK')}
-function say(t,lang){if(!('speechSynthesis'in window)){alert('Audio is not supported on this device.');return}let u=new SpeechSynthesisUtterance(t);u.lang=lang;speechSynthesis.speak(u)}
-let qi=0;
-const questions=[
-{q:'Which letter comes first?',a:['A','B','C'],c:'A'},
-{q:'Which animal says meow?',a:['Dog','Cat','Cow'],c:'Cat'},
-{q:'What is 2 + 1?',a:['2','3','4'],c:'3'},
-{q:'Which fruit is red?',a:['Apple','Banana','Grapes'],c:'Apple'},
-{q:'Which number comes after 4?',a:['3','5','7'],c:'5'}
+updateStars();
+
+function showPage(page,button){
+ document.querySelectorAll("main section").forEach(s=>s.classList.add("hidden"));
+ document.getElementById(page).classList.remove("hidden");
+ document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
+ if(button)button.classList.add("active");
+}
+
+function speak(text,lang){
+ if("speechSynthesis" in window){
+  speechSynthesis.cancel();
+  let msg=new SpeechSynthesisUtterance(text);
+  msg.lang=lang;
+  speechSynthesis.speak(msg);
+ }
+}
+
+// ENGLISH ABC
+const abc=[
+["A","🍎","Apple"],["B","⚽","Ball"],["C","🐱","Cat"],
+["D","🐶","Dog"],["E","🐘","Elephant"],["F","🐟","Fish"],
+["G","🍇","Grapes"],["H","🏠","House"],["I","🍦","Ice cream"],
+["J","🧃","Juice"],["K","🪁","Kite"],["L","🦁","Lion"],
+["M","🥭","Mango"],["N","👃","Nose"],["O","🍊","Orange"],
+["P","🦚","Peacock"],["Q","👑","Queen"],["R","🌈","Rainbow"],
+["S","☀️","Sun"],["T","🐯","Tiger"],["U","☂️","Umbrella"],
+["V","🚐","Van"],["W","⌚","Watch"],["X","🎵","Xylophone"],
+["Y","🪀","Yo-yo"],["Z","🦓","Zebra"]
 ];
-function newQuiz(){
-let q=questions[qi%questions.length];qi++;
-document.getElementById('question').textContent=q.q;
-document.getElementById('feedback').textContent='Choose your answer!';
-let box=document.getElementById('answers');box.innerHTML='';
-q.a.forEach(a=>{let b=document.createElement('button');b.className='action';b.textContent=a;b.onclick=()=>{if(a===q.c){document.getElementById('feedback').textContent='Correct! Well done! ⭐';earn()}else{document.getElementById('feedback').textContent='Try again! You can do it!'} };box.appendChild(b)})
+
+let ai=0;
+function renderABC(){
+ let a=abc[ai];
+ document.getElementById("abcLetter").textContent=a[0];
+ document.getElementById("abcEmoji").textContent=a[1];
+ document.getElementById("abcWord").textContent=a[0]+" for "+a[2];
 }
-renderABC();renderUrdu();renderNumber();newQuiz();
+function nextABC(){
+ ai=(ai+1)%abc.length;
+ renderABC();stars++;updateStars();
+}
+function previousABC(){
+ ai=(ai-1+abc.length)%abc.length;
+ renderABC();
+}
+function speakABC(){
+ speak(abc[ai][0]+" for "+abc[ai][2],"en-US");
+}
+
+// URDU LETTERS
+const urdu=[
+["ا","🍎","انار"],["ب","🦆","بطخ"],["پ","🍇","پھل"],
+["ت","🍉","تربوز"],["ٹ","🦑","ٹماٹر"],["ث","🌳","ثمر"],
+["ج","🛩️","جہاز"],["چ","🌙","چاند"],["ح","🐟","حلوہ"],
+["خ","🐰","خرگوش"],["د","🪣","دودھ"],["ر","🌹","گلاب"],
+["س","🍎","سیب"],["ش","🦁","شیر"],["ف","🐘","فیل"],
+["ک","📚","کتاب"],["گ","🌹","گلاب"],["ل","🍋","لیموں"],
+["م","🐟","مچھلی"],["ن","🍞","نان"],["و","🌹","ورق"],
+["ہ","✈️","ہوائی جہاز"],["ی","🖐️","یاد"]
+];
+
+let ui=0;
+function renderUrdu(){
+ let a=urdu[ui];
+ document.getElementById("urduLetter").textContent=a[0];
+ document.getElementById("urduEmoji").textContent=a[1];
+ document.getElementById("urduWord").textContent=a[2];
+}
+function nextUrdu(){
+ ui=(ui+1)%urdu.length;
+ renderUrdu();stars++;updateStars();
+}
+function previousUrdu(){
+ ui=(ui-1+urdu.length)%urdu.length;
+ renderUrdu();
+}
+function speakUrdu(){
+ speak(urdu[ui][0]+" "+urdu[ui][2],"ur-PK");
+}
+
+// NUMBERS
+const numbers=[
+["1","One — ایک","🍓"],["2","Two — دو","🐥"],
+["3","Three — تین","🦋"],["4","Four — چار","🍎"],
+["5","Five — پانچ","⭐"],["6","Six — چھ","🐠"],
+["7","Seven — سات","🌈"],["8","Eight — آٹھ","🍊"],
+["9","Nine — نو","🦋"],["10","Ten — دس","🎈"]
+];
+
+let ni=0;
+function renderNumber(){
+ let a=numbers[ni];
+ document.getElementById("numberValue").textContent=a[0];
+ document.getElementById("numberWord").textContent=a[1];
+ document.getElementById("numberEmoji").textContent=a[2];
+}
+function nextNumber(){
+ ni=(ni+1)%numbers.length;
+ renderNumber();stars++;updateStars();
+}
+function previousNumber(){
+ ni=(ni-1+numbers.length)%numbers.length;
+ renderNumber();
+}
+function speakNumber(){
+ speak(numbers[ni][1],"en-US");
+}
+
+// QUIZ
+const questions=[
+{q:"Which letter comes first?",o:["A","B","C"],a:"A"},
+{q:"Which fruit is red?",o:["Banana","Apple","Grapes"],a:"Apple"},
+{q:"What is 2 + 1?",o:["2","3","4"],a:"3"},
+{q:"Which animal says Meow?",o:["Dog","Cat","Cow"],a:"Cat"},
+{q:"Which number comes after 4?",o:["3","5","7"],a:"5"}
+];
+
+let qi=0;
+let answered=false;
+
+function renderQuiz(){
+ let q=questions[qi];
+ document.getElementById("question").textContent=q.q;
+ document.getElementById("quizMessage").textContent="Choose the correct answer!";
+ let box=document.getElementById("options");
+ box.innerHTML="";
+ answered=false;
+
+ q.o.forEach(option=>{
+  let btn=document.createElement("button");
+  btn.className="quiz-option";
+  btn.textContent=option;
+  btn.onclick=()=>checkAnswer(option);
+  box.appendChild(btn);
+ });
+}
+
+function checkAnswer(answer){
+ if(answered)return;
+ answered=true;
+
+ if(answer===questions[qi].a){
+  document.getElementById("quizMessage").textContent="🎉 Correct! Well done!";
+  stars+=2;updateStars();
+ }else{
+  document.getElementById("quizMessage").textContent="😊 Try again in the next question!";
+ }
+}
+
+function nextQuestion(){
+ qi=(qi+1)%questions.length;
+ renderQuiz();
+}
+
+renderABC();
+renderUrdu();
+renderNumber();
+renderQuiz();
 </script>
+
 </body>
 </html>

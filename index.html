@@ -3,54 +3,70 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Little Stars - Version 2</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Little Stars - Kids Learning</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(135deg,#c9f4ff,#f5d9ff,#ffe2ed);color:#40365f}
-header{text-align:center;padding:20px;background:linear-gradient(120deg,#ff9dcc,#9cceff,#b5f5d0);border-radius:0 0 30px 30px}
-h1{font-size:30px;margin:8px}
-.mascot{font-size:65px;animation:bounce 2s infinite}
-@keyframes bounce{50%{transform:translateY(-12px) rotate(5deg)}}
-.stars{background:white;padding:9px 18px;border-radius:30px;display:inline-block}
+body{margin:0;font-family:Arial,sans-serif;color:#40345f;background:linear-gradient(#8de7ff,#e5f9ff 45%,#b8f4c3)}
+header{text-align:center;padding:18px 10px;background:linear-gradient(120deg,#ff9ecb,#a9c9ff,#a9f0c4);border-radius:0 0 30px 30px;box-shadow:0 5px 15px #7774}
+.logo{font-size:58px;animation:bob 2s infinite}
+@keyframes bob{50%{transform:translateY(-9px) rotate(4deg)}}
+h1{font-size:30px;margin:4px}
+header p{margin:5px}
+.stars{display:inline-block;background:white;padding:9px 18px;border-radius:30px;font-weight:bold}
 main{max-width:950px;margin:auto;padding:14px}
-.welcome,.page{background:white;border-radius:25px;padding:18px;text-align:center;box-shadow:0 4px 14px #7773}
-.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:16px}
-.card{background:white;border:3px solid white;border-radius:22px;padding:17px 5px;text-align:center;box-shadow:0 4px 12px #7773;cursor:pointer}
-.card:active{transform:scale(.96);border-color:#ffacd0}
-.card span{font-size:40px}
-.card h3{font-size:15px;margin:7px}
-button{border:0;border-radius:15px;padding:12px 16px;margin:5px;background:#ff83b7;color:white;font-weight:bold;font-size:15px;cursor:pointer}
-.page{display:none;margin-top:15px;text-align:left}
+.welcome{background:linear-gradient(135deg,#fff,#fff0f8);border-radius:25px;padding:18px;text-align:center;box-shadow:0 5px 15px #7773}
+.welcome h2{color:#ed5599}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;margin-top:16px}
+.card{min-width:0;border:4px solid white;border-radius:23px;overflow:hidden;background:white;text-align:center;box-shadow:0 5px 13px #5553;cursor:pointer;transition:.2s}
+.card:active{transform:scale(.96)}
+.art{height:125px;display:flex;align-items:center;justify-content:center;gap:4px;position:relative;overflow:hidden;font-size:54px;text-shadow:0 4px 3px #5555}
+.art:before{content:"";position:absolute;width:130px;height:130px;background:#ffffff55;border-radius:50%;top:-65px;right:-25px}
+.art:after{content:"✦  ✧  ✦";position:absolute;top:9px;left:10px;color:white;font-size:17px}
+.art span{position:relative;z-index:1;filter:drop-shadow(0 5px 2px #5554)}
+.art.a{background:linear-gradient(135deg,#5ce5e2,#a1f7bd)}
+.art.b{background:linear-gradient(135deg,#ffa6d5,#9dbbff)}
+.art.c{background:linear-gradient(135deg,#ffd36d,#ff9f9f)}
+.art.d{background:linear-gradient(135deg,#a9e9ff,#a4d5ff)}
+.art.e{background:linear-gradient(135deg,#b4f5d0,#69d5bd)}
+.art.f{background:linear-gradient(135deg,#c6aaff,#ffb9e5)}
+.art.g{background:linear-gradient(135deg,#fff0a6,#ffbc8a)}
+.art.h{background:linear-gradient(135deg,#a9dfff,#a6f0da)}
+.card h3{font-size:15px;margin:10px 3px 12px}
+.page{display:none;background:white;border-radius:24px;padding:17px;margin-top:15px;box-shadow:0 5px 15px #5553}
 .page.active{display:block}
-.page h2{text-align:center;color:#df589a}
-.item{display:inline-block;background:#f1eaff;border-radius:15px;padding:14px;margin:5px;font-size:20px;cursor:pointer}
-.lesson{background:#fff0f7;border-radius:16px;padding:15px;margin:10px 0}
-#message{text-align:center;color:#168b62;font-weight:bold}
-input{padding:12px;border:2px solid #ddd;border-radius:12px;width:100%;margin:8px 0}
-audio,video{width:100%;margin-top:12px}
-canvas{width:100%;height:240px;border:3px dashed #d4a8ef;border-radius:15px;touch-action:none}
-footer{text-align:center;padding:25px}
-@media(min-width:600px){.cards{grid-template-columns:repeat(4,1fr)}}
+.page h2{text-align:center;color:#e45199}
+button{border:0;border-radius:14px;background:#ffe1f0;color:#563c72;padding:11px 15px;margin:5px;font-size:15px;font-weight:bold;cursor:pointer}
+button.primary{background:#f36da9;color:white}
+.tile{display:inline-block;background:#f2edff;border-radius:17px;padding:13px;margin:5px;font-size:21px;cursor:pointer}
+.tile:active{background:#d8f5ff}
+.lesson{background:#fff0f7;padding:14px;border-radius:17px;margin:12px 0}
+.big{font-size:55px;text-align:center;padding:12px}
+#message{text-align:center;color:#168c62;font-weight:bold;min-height:25px}
+input{width:100%;padding:12px;border:2px solid #ddd;border-radius:12px;margin:8px 0;font-size:16px}
+audio,video{width:100%;margin:10px 0}
+canvas{width:100%;height:240px;border:3px dashed #c9a5ed;border-radius:15px;touch-action:none}
+footer{text-align:center;padding:22px}
+@media(min-width:650px){.cards{grid-template-columns:repeat(3,1fr)}.art{height:155px}}
 </style>
 </head>
 <body>
 <header>
-<div class="mascot">🧸🌈⭐</div>
+<div class="logo">🌈🧸⭐</div>
 <h1>Little Stars</h1>
 <p>Learn • Play • Smile</p>
-<div class="stars">⭐ Stars: <span id="stars">0</span></div>
+<div class="stars">⭐ My Stars: <span id="stars">0</span></div>
 </header>
 <main>
 <div id="home">
 <div class="welcome">
-<h2>Welcome Little Star! 🎈</h2>
-<p>Let's learn something wonderful!</p>
-<button onclick="speak('Welcome to Little Stars. Let us learn and play!')">🔊 Listen</button>
+<h2>Welcome Little Stars! 🎈</h2>
+<p>Come and explore our happy learning world!</p>
+<button class="primary" onclick="speak('Welcome to Little Stars. Let us learn and play!')">🔊 Listen</button>
 </div>
 <div class="cards" id="menu"></div>
 </div>
-<div class="page" id="page">
+<div id="page" class="page">
 <button onclick="goHome()">⬅ Home</button>
 <h2 id="heading"></h2>
 <div id="content"></div>
@@ -58,52 +74,167 @@ footer{text-align:center;padding:25px}
 </div>
 </main>
 <footer>Made with ❤️ for Little Stars</footer>
+
 <script>
 let score=Number(localStorage.getItem("littleStars")||0);
 document.getElementById("stars").textContent=score;
-function reward(){score++;localStorage.setItem("littleStars",score);document.getElementById("stars").textContent=score}
-function speak(t){if(!("speechSynthesis" in window)){alert("Audio not supported");return}speechSynthesis.cancel();let u=new SpeechSynthesisUtterance(t);u.rate=.85;speechSynthesis.speak(u)}
-function goHome(){document.getElementById("home").style.display="block";document.getElementById("page").classList.remove("active");speechSynthesis.cancel()}
+
 const sections=[
-["🔤","ABC","abc"],["ا","Urdu","urdu"],["🔢","Numbers","numbers"],["🐘","Animals","animals"],
-["🍎","Fruits","fruits"],["🎨","Colors","colors"],["🔷","Shapes","shapes"],["📖","Noorani Qaida","qaida"],
-["🕌","Islamic Learning","islam"],["🌙","Islamic Information","info"],["📚","Heavenly Books","books"],["🤲","Duas","duas"],
-["🌹","Naat Sharif","naat"],["🎬","Kids Cartoons","cartoons"],["📜","Stories","stories"],["🎵","Poems & Music","music"],
-["🧠","General Knowledge","gk"],["📝","Quiz","quiz"],["🎮","Games","games"],["🖍️","Drawing","drawing"],
-["🗣️","Speaking","speaking"],["➕","Maths","math"],["📅","Days & Months","calendar"],["⏰","Clock","clock"],
-["🎤","Voice Recorder","voice"],["👨‍👩‍👧","Parents Corner","parents"]
+["🔤","ABC English","abc","a"],["ا ب پ","Urdu Letters","urdu","b"],
+["🔢","Numbers","numbers","c"],["🐘 🦁","Animals","animals","d"],
+["🍎 🍌","Fruits","fruits","e"],["🎨 🌈","Colors","colors","f"],
+["🔺 ⭐","Shapes","shapes","g"],["📖 🌙","Noorani Qaida","qaida","h"],
+["🕌 🧒","Islamic Learning","islam","b"],["🌙 📚","Islamic Information","info","f"],
+["📕 📗","Heavenly Books","books","g"],["🤲 🌸","Daily Duas","duas","e"],
+["🌹 🎵","Naat Sharif","naat","f"],["🐻 🐰","Kids Cartoons","cartoons","a"],
+["📜 🦊","Stories","stories","c"],["🎶 🎤","Poems & Music","music","d"],
+["🧠 💡","General Knowledge","gk","g"],["📝 ⭐","Quiz","quiz","e"],
+["🎮 🧩","Games","games","f"],["🖍️ 🎨","Drawing","drawing","c"],
+["🗣️ 🔊","Speaking Practice","speaking","h"],["➕ 🔢","Maths","math","a"],
+["📅 🌞","Days & Months","calendar","b"],["⏰ 🕒","Clock","clock","g"],
+["🎤 🎧","Voice Recorder","voice","d"],["👨‍👩‍👧","Parents Corner","parents","e"]
 ];
-document.getElementById("menu").innerHTML=sections.map(s=>`<div class="card" onclick="openSection('${s[2]}')"><span>${s[0]}</span><h3>${s[1]}</h3></div>`).join("");
-function grid(a){return a.map(x=>`<div class="item" onclick="speak('${x.replace(/'/g,"")}');reward();document.getElementById('message').textContent='Well done! ⭐'">${x}</div>`).join("")}
+
+document.getElementById("menu").innerHTML=sections.map(s=>
+`<div class="card" onclick="openSection('${s[2]}')">
+<div class="art ${s[3]}"><span>${s[0]}</span></div>
+<h3>${s[1]}</h3></div>`).join("");
+
+function reward(){
+score++;
+localStorage.setItem("littleStars",score);
+document.getElementById("stars").textContent=score;
+}
+function speak(t){
+if(!("speechSynthesis" in window)){alert("Audio is not supported in this browser.");return}
+speechSynthesis.cancel();
+let u=new SpeechSynthesisUtterance(t);
+u.rate=.85;speechSynthesis.speak(u);
+}
+function goHome(){
+document.getElementById("home").style.display="block";
+document.getElementById("page").classList.remove("active");
+if("speechSynthesis" in window)speechSynthesis.cancel();
+}
+function tiles(arr){
+return arr.map(x=>`<button class="tile" onclick="speak('${x.replace(/'/g,"")}');reward();document.getElementById('message').textContent='Well done! ⭐'">${x}</button>`).join("");
+}
 function openSection(id){
 let html="";
 switch(id){
-case "abc":html="<p>Tap a letter to hear it.</p>"+grid("ABCDEFGHIJKLMNOPQRSTUVWXYZ".split(""));break;
-case "urdu":html="<p>اردو حروف سیکھیں۔</p>"+grid("ا ب پ ت ٹ ث ج چ ح خ د ڈ ذ ر ڑ ز ژ س ش ص ض ط ظ ع غ ف ق ک گ ل م ن ں و ہ ھ ء ی ے".split(" "));break;
-case "numbers":html=grid(Array.from({length:20},(_,i)=>String(i+1)));break;
-case "animals":html=grid(["🐘 Elephant","🦁 Lion","🐱 Cat","🐶 Dog","🐰 Rabbit","🐼 Panda","🐵 Monkey","🦒 Giraffe","🐻 Bear","🐯 Tiger"]);break;
-case "fruits":html=grid(["🍎 Apple","🍌 Banana","🍇 Grapes","🍊 Orange","🥭 Mango","🍉 Watermelon","🍓 Strawberry"]);break;
-case "colors":html=grid(["🔴 Red","🔵 Blue","🟢 Green","🟡 Yellow","🟣 Purple","🟠 Orange","⚫ Black","⚪ White"]);break;
-case "shapes":html=grid(["🔴 Circle","🟥 Square","🔺 Triangle","⭐ Star","❤️ Heart","⬛ Rectangle"]);break;
-case "qaida":html=`<div class="lesson"><h3>نورانی قاعدہ 🌙</h3>عربی حروف پہچانیں۔ درست تلفظ کے لیے مستند قاری سے بھی سیکھیں۔</div>${grid("ا ب ت ث ج ح خ د ذ ر ز س ش ص ض ط ظ ع غ ف ق ك ل م ن و ه لا ء ي".split(" "))}<h3>حرکات</h3>${grid(["بَ زبر","بِ زیر","بُ پیش","بًا دو زبر","بٍ دو زیر","بٌ دو پیش"])}`;break;
-case "islam":html=grid(["اللہ ایک ہے","حضرت محمد ﷺ آخری نبی ہیں","نماز","روزہ","زکوٰۃ","حج","سلام کرنا","سچ بولنا","والدین کا احترام"]);break;
-case "info":html=grid(["اسلام کے پانچ ارکان","ایمان","مسجد","اذان","وضو","نماز","رمضان","عیدالفطر","عیدالاضحی","اسلامی مہینے","فرشتے","انبیائے کرام"]);break;
-case "books":html=`<div class="lesson"><h3>آسمانی کتابیں 📚</h3>اسلامی تعلیمات کے مطابق:</div>${grid(["تورات — حضرت موسیٰؑ","زبور — حضرت داؤدؑ","انجیل — حضرت عیسیٰؑ","قرآن مجید — حضرت محمد ﷺ"])}`;break;
-case "duas":html=`<div class="lesson">روزمرہ دعائیں مستند عربی متن اور ترجمے کے ساتھ سیکھیں۔</div>${grid(["کھانے سے پہلے کی دعا","کھانے کے بعد کی دعا","سونے کی دعا","جاگنے کی دعا","گھر سے نکلنے کی دعا","علم میں اضافے کی دعا"])}<p>یہ عنوانات ہیں؛ مکمل دعائیں تصدیق کے بعد شامل کی جائیں گی۔</p>`;break;
-case "naat":html=`<div class="lesson">🌹 نعت شریف سننے کے لیے اپنی آڈیو فائل منتخب کریں۔</div><input type="file" id="audioFile" accept="audio/*"><audio id="player" controls></audio><button onclick="playAudio()">▶ Play Naat</button>`;break;
-case "cartoons":html=`<div class="lesson">🐻 بچوں کی تعلیمی ویڈیو منتخب کریں۔</div><input type="file" id="videoFile" accept="video/*"><video id="video" controls></video><button onclick="playVideo()">▶ Play Cartoon</button>`;break;
-case "stories":html=["The Kind Rabbit — خرگوش نے دوست کی مدد کی۔","The Honest Boy — سچ بولنا اچھی عادت ہے۔","The Helpful Friend — مل جل کر کام کریں۔","The Thirsty Crow — سمجھ داری سے کام لیں۔"].map(x=>`<div class="lesson">${x}<button onclick="speak('${x.split("—")[1]}')">🔊 Listen</button></div>`).join("");break;
-case "music":html=grid(["Twinkle Twinkle Little Star","Baa Baa Black Sheep","Rain Rain Go Away","ننھی منی نظم"]) + `<p>آڈیو فائل چلائیں:</p><input type="file" id="musicFile" accept="audio/*"><audio id="musicPlayer" controls></audio><button onclick="playMusic()">▶ Play Music</button>`;break;
-case "gk":html=grid(["سب سے بڑا جانور؟ نیلی وہیل","ہم کس سیارے پر رہتے ہیں؟ زمین","ہفتے میں دن؟ سات","سال میں مہینے؟ بارہ","سورج مشرق سے نکلتا ہے"]);break;
-case "quiz":html=`<h3>2 + 2 = ?</h3><button onclick="answer(3)">3</button><button onclick="answer(4)">4</button><button onclick="answer(5)">5</button>`;break;
-case "games":html=`<h3>Number Guessing Game 🎮</h3><p>1 سے 5 تک نمبر چنیں۔</p>${[1,2,3,4,5].map(n=>`<button onclick="guess(${n})">${n}</button>`).join("")}<div id="gameResult"></div><h3>Animal Game</h3><p>میاؤں میاؤں کون کرتا ہے؟</p><button onclick="animal('Cat')">🐱 Cat</button><button onclick="animal('Dog')">🐶 Dog</button>`;break;
-case "drawing":html=`<h3>اپنی تصویر بنائیں 🖍️</h3><input type="color" id="color" value="#ff55aa"><button onclick="clearDrawing()">Clear</button><canvas id="canvas"></canvas>`;break;
-case "speaking":html=`<h3>لفظ لکھیں اور آواز سنیں</h3><input id="word" placeholder="Write a word"><button onclick="speak(document.getElementById('word').value)">🔊 Speak</button>`;break;
-case "math":html=`<h3>3 + 2 = ?</h3><button onclick="answerMath(4)">4</button><button onclick="answerMath(5)">5</button><button onclick="answerMath(6)">6</button>`;break;
-case "calendar":html=grid(["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday","January","February","March","April","May","June","July","August","September","October","November","December"]);break;
-case "clock":html=`<h3 id="clock"></h3><button onclick="showClock()">Show Time</button>`;break;
-case "voice":html=`<p>اپنی آواز ریکارڈ کریں۔ یہ اسی ڈیوائس پر رہے گی۔</p><button onclick="startVoice()">🔴 Record</button><button onclick="stopVoice()">⏹ Stop</button><audio id="voicePlayer" controls></audio><div id="voiceStatus"></div>`;break;
-case "parents":html=`<div class="lesson"><h3>Parents Corner</h3><p>بچوں کے ساتھ روزانہ سیکھنے کا وقت گزاریں۔ بچوں کی ذاتی معلومات آن لائن شیئر نہ کریں۔ مائیکروفون صرف اجازت دینے پر کام کرے گا۔</p></div>`;break;
+case "abc":
+html="<p>Tap a letter to hear it.</p>"+tiles("ABCDEFGHIJKLMNOPQRSTUVWXYZ".split(""));
+break;
+case "urdu":
+html="<p>اردو حروف سیکھیں۔ حرف دبائیں اور آواز سنیں۔</p>"+tiles("ا ب پ ت ٹ ث ج چ ح خ د ڈ ذ ر ڑ ز ژ س ش ص ض ط ظ ع غ ف ق ک گ ل م ن ں و ہ ھ ء ی ے".split(" "));
+break;
+case "numbers":
+html="<p>Counting 1 to 20</p>"+tiles(Array.from({length:20},(_,i)=>String(i+1)));
+break;
+case "animals":
+html=tiles(["🐘 Elephant","🦁 Lion","🐱 Cat","🐶 Dog","🐰 Rabbit","🐼 Panda","🐵 Monkey","🦒 Giraffe","🐻 Bear","🐯 Tiger","🐸 Frog","🦋 Butterfly"]);
+break;
+case "fruits":
+html=tiles(["🍎 Apple","🍌 Banana","🍇 Grapes","🍊 Orange","🥭 Mango","🍉 Watermelon","🍓 Strawberry","🍍 Pineapple"]);
+break;
+case "colors":
+html=tiles(["🔴 Red","🔵 Blue","🟢 Green","🟡 Yellow","🟣 Purple","🟠 Orange","⚫ Black","⚪ White"]);
+break;
+case "shapes":
+html=tiles(["🔴 Circle","🟥 Square","🔺 Triangle","⭐ Star","❤️ Heart","⬛ Rectangle","💎 Diamond"]);
+break;
+case "qaida":
+html=`<div class="lesson"><h3>نورانی قاعدہ 🌙</h3>
+<p>عربی حروف کی پہچان اور حرکات کی ابتدائی مشق۔ درست قرآنی تلفظ کے لیے استاد سے بھی پڑھیں۔</p></div>
+<h3>عربی حروف</h3>${tiles("ا ب ت ث ج ح خ د ذ ر ز س ش ص ض ط ظ ع غ ف ق ك ل م ن و ه لا ء ي".split(" "))}
+<h3>حرکات کی مثالیں</h3>${tiles(["بَ — زبر","بِ — زیر","بُ — پیش","بًا — دو زبر","بٍ — دو زیر","بٌ — دو پیش"])}
+<div class="lesson">قاعدہ کی مزید مشقیں مستند نصاب کے مطابق استاد کی رہنمائی میں شامل کی جا سکتی ہیں۔</div>`;
+break;
+case "islam":
+html=tiles(["اللہ ایک ہے","حضرت محمد ﷺ آخری نبی ہیں","نماز","روزہ","زکوٰۃ","حج","کلمہ طیبہ","سلام کرنا","سچ بولنا","والدین کا احترام","صفائی نصف ایمان ہے"]);
+break;
+case "info":
+html=tiles(["اسلام کے پانچ ارکان","ایمان کے بنیادی عقائد","مسجد","اذان","وضو","نماز","رمضان","عیدالفطر","عیدالاضحی","اسلامی مہینے","فرشتے","انبیائے کرام"]);
+break;
+case "books":
+html=`<div class="lesson"><h3>آسمانی کتابیں 📚</h3>
+<p>اسلامی تعلیمات میں معروف چار کتابیں:</p></div>
+${tiles(["تورات — حضرت موسیٰؑ","زبور — حضرت داؤدؑ","انجیل — حضرت عیسیٰؑ","قرآن مجید — حضرت محمد ﷺ"])}`;
+break;
+case "duas":
+html=`<div class="lesson"><h3>روزمرہ کی دعائیں 🤲</h3>
+<p>یہاں دعاؤں کے عنوانات ہیں۔ مکمل عربی متن اور ترجمہ مستند دینی ماخذ سے تصدیق کے بعد شامل کیا جائے گا۔</p></div>
+${tiles(["کھانے سے پہلے کی دعا","کھانے کے بعد کی دعا","سونے کی دعا","جاگنے کی دعا","گھر سے نکلنے کی دعا","علم میں اضافے کی دعا"])}`;
+break;
+case "naat":
+html=`<div class="big">🌹 ﷺ 🌹</div><p>اپنی نعت آڈیو فائل منتخب کریں۔</p>
+<input type="file" id="audioFile" accept="audio/*">
+<audio id="player" controls></audio>
+<button onclick="playFile('audioFile','player')">▶ Play</button>
+<button onclick="pauseFile('player')">⏸ Pause</button>`;
+break;
+case "cartoons":
+html=`<div class="big">🐻 🐰 🦁 🐼</div><p>اپنی بچوں کی کارٹون ویڈیو منتخب کریں۔</p>
+<input type="file" id="videoFile" accept="video/*">
+<video id="videoPlayer" controls></video>
+<button onclick="playFile('videoFile','videoPlayer')">▶ Play</button>
+<button onclick="pauseFile('videoPlayer')">⏸ Pause</button>`;
+break;
+case "stories":
+html=["🐰 The Kind Rabbit — خرگوش نے دوست کی مدد کی۔","⭐ The Honest Boy — سچ بولنا اچھی عادت ہے۔","🐻 The Helpful Friend — دوستوں کی مدد کریں۔","🐦 The Thirsty Crow — سمجھ داری سے کام لیں۔"].map(x=>`<div class="lesson">${x}<button onclick="speak('${x.replace(/'/g,"")}')">🔊 Listen</button></div>`).join("");
+break;
+case "music":
+html=`${tiles(["Twinkle Twinkle Little Star","Baa Baa Black Sheep","Rain Rain Go Away"])}
+<p>اپنی نظم یا میوزک فائل منتخب کریں:</p>
+<input type="file" id="musicFile" accept="audio/*">
+<audio id="musicPlayer" controls></audio>
+<button onclick="playFile('musicFile','musicPlayer')">▶ Play</button>
+<button onclick="pauseFile('musicPlayer')">⏸ Pause</button>`;
+break;
+case "gk":
+html=tiles(["سب سے بڑا جانور؟ نیلی وہیل","ہم کس سیارے پر رہتے ہیں؟ زمین","ہفتے میں دن؟ سات","سال میں مہینے؟ بارہ","سورج مشرق سے نکلتا ہے","پانی زندگی کے لیے ضروری ہے"]);
+break;
+case "quiz":
+html=`<div class="lesson"><h3>2 + 2 = ?</h3>
+<button onclick="check(3,4)">3</button><button onclick="check(4,4)">4</button><button onclick="check(5,4)">5</button></div>
+<div class="lesson"><h3>Which animal says Meow?</h3>
+<button onclick="animalAnswer('Dog')">🐶 Dog</button><button onclick="animalAnswer('Cat')">🐱 Cat</button></div>`;
+break;
+case "games":
+html=`<div class="lesson"><h3>🎯 Number Guessing</h3><p>1 سے 5 تک نمبر چنیں۔</p>
+${[1,2,3,4,5].map(n=>`<button onclick="guess(${n})">${n}</button>`).join("")}
+<div id="gameResult"></div></div>
+<div class="lesson"><h3>🐱 Animal Game</h3><p>میاؤں میاؤں کون کرتا ہے؟</p>
+<button onclick="animalAnswer('Dog')">🐶 Dog</button><button onclick="animalAnswer('Cat')">🐱 Cat</button></div>`;
+break;
+case "drawing":
+html=`<h3>اپنی تصویر بنائیں 🖍️</h3><input type="color" id="paintColor" value="#ff55aa">
+<button onclick="clearDrawing()">Clear</button><canvas id="canvas"></canvas>`;
+break;
+case "speaking":
+html=`<h3>لفظ لکھیں اور آواز سنیں</h3>
+<input id="word" placeholder="Write a word">
+<button onclick="speak(document.getElementById('word').value)">🔊 Speak</button>`;
+break;
+case "math":
+html=`<div class="lesson"><h3>3 + 2 = ?</h3>
+<button onclick="check(4,5)">4</button><button onclick="check(5,5)">5</button><button onclick="check(6,5)">6</button></div>`;
+break;
+case "calendar":
+html=tiles(["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday","January","February","March","April","May","June","July","August","September","October","November","December"]);
+break;
+case "clock":
+html=`<div class="big">⏰</div><h3 id="clock"></h3><button onclick="showClock()">Show Time</button>`;
+break;
+case "voice":
+html=`<p>اپنی آواز ریکارڈ کریں۔ ریکارڈنگ اسی ڈیوائس پر رہے گی۔</p>
+<button onclick="startVoice()">🔴 Record</button><button onclick="stopVoice()">⏹ Stop</button>
+<audio id="voicePlayer" controls></audio><div id="voiceStatus"></div>`;
+break;
+case "parents":
+html=`<div class="lesson"><h3>Parents Corner 👨‍👩‍👧</h3>
+<p>بچوں کے ساتھ روزانہ سیکھنے کا وقت گزاریں۔ بچوں کی ذاتی معلومات آن لائن شیئر نہ کریں۔ مائیکروفون صرف والدین کی اجازت سے استعمال کریں۔</p></div>`;
+break;
 }
 document.getElementById("home").style.display="none";
 document.getElementById("page").classList.add("active");
@@ -113,21 +244,69 @@ document.getElementById("message").textContent="";
 if(id==="drawing")setupDrawing();
 if(id==="clock")showClock();
 }
-function answer(n){document.getElementById("message").textContent=n===4?"Correct! ⭐":"Try again";if(n===4)reward()}
-function answerMath(n){document.getElementById("message").textContent=n===5?"Correct! ⭐":"Try again";if(n===5)reward()}
+function check(n,correct){
+document.getElementById("message").textContent=n===correct?"Correct! ⭐":"Try again!";
+if(n===correct)reward();
+}
+function animalAnswer(a){
+document.getElementById("message").textContent=a==="Cat"?"Correct! 🐱":"Try again!";
+if(a==="Cat")reward();
+}
 let secret=Math.floor(Math.random()*5)+1;
-function guess(n){let e=document.getElementById("gameResult");if(n===secret){e.textContent="You won! ⭐";reward();secret=Math.floor(Math.random()*5)+1}else e.textContent="Try again!"}
-function animal(a){document.getElementById("message").textContent=a==="Cat"?"Correct! 🐱":"Try again";if(a==="Cat")reward()}
-function playAudio(){let f=document.getElementById("audioFile").files[0];if(f)document.getElementById("player").src=URL.createObjectURL(f);else alert("Choose an audio file first")}
-function playVideo(){let f=document.getElementById("videoFile").files[0];if(f)document.getElementById("video").src=URL.createObjectURL(f);else alert("Choose a video first")}
-function playMusic(){let f=document.getElementById("musicFile").files[0];if(f)document.getElementById("musicPlayer").src=URL.createObjectURL(f);else alert("Choose music first")}
-function showClock(){let e=document.getElementById("clock");if(e)e.textContent=new Date().toLocaleTimeString()}
+function guess(n){
+let r=document.getElementById("gameResult");
+if(n===secret){r.textContent="You won! ⭐";reward();secret=Math.floor(Math.random()*5)+1}
+else r.textContent="Try again!";
+}
+function playFile(inputId,playerId){
+let f=document.getElementById(inputId).files[0];
+if(!f){alert("Please choose a file first.");return}
+let p=document.getElementById(playerId);
+p.src=URL.createObjectURL(f);p.play();
+}
+function pauseFile(id){document.getElementById(id).pause()}
+function showClock(){
+let e=document.getElementById("clock");
+if(e)e.textContent=new Date().toLocaleTimeString();
+}
 let ctx,drawing=false;
-function setupDrawing(){let c=document.getElementById("canvas");c.width=c.clientWidth*devicePixelRatio;c.height=240*devicePixelRatio;ctx=c.getContext("2d");ctx.scale(devicePixelRatio,devicePixelRatio);ctx.lineWidth=4;ctx.lineCap="round";let p=e=>{let r=c.getBoundingClientRect();return [e.clientX-r.left,e.clientY-r.top]};c.onpointerdown=e=>{drawing=true;ctx.beginPath();ctx.moveTo(...p(e))};c.onpointermove=e=>{if(drawing){ctx.strokeStyle=document.getElementById("color").value;ctx.lineTo(...p(e));ctx.stroke()}};c.onpointerup=()=>drawing=false;c.onpointerleave=()=>drawing=false}
-function clearDrawing(){let c=document.getElementById("canvas");ctx.clearRect(0,0,c.width,c.height)}
+function setupDrawing(){
+let c=document.getElementById("canvas");
+c.width=c.clientWidth*devicePixelRatio;c.height=240*devicePixelRatio;
+ctx=c.getContext("2d");ctx.scale(devicePixelRatio,devicePixelRatio);
+ctx.lineWidth=4;ctx.lineCap="round";
+function pos(e){let r=c.getBoundingClientRect();return [e.clientX-r.left,e.clientY-r.top]}
+c.onpointerdown=e=>{drawing=true;ctx.beginPath();ctx.moveTo(...pos(e))}
+c.onpointermove=e=>{if(drawing){ctx.strokeStyle=document.getElementById("paintColor").value;ctx.lineTo(...pos(e));ctx.stroke()}}
+c.onpointerup=()=>drawing=false;c.onpointerleave=()=>drawing=false;
+}
+function clearDrawing(){
+let c=document.getElementById("canvas");
+ctx.clearRect(0,0,c.width,c.height);
+}
 let recorder,stream;
-async function startVoice(){try{stream=await navigator.mediaDevices.getUserMedia({audio:true});let chunks=[];recorder=new MediaRecorder(stream);recorder.ondataavailable=e=>chunks.push(e.data);recorder.onstop=()=>{document.getElementById("voicePlayer").src=URL.createObjectURL(new Blob(chunks,{type:"audio/webm"}));stream.getTracks().forEach(t=>t.stop())};recorder.start();document.getElementById("voiceStatus").textContent="Recording..."}catch(e){document.getElementById("voiceStatus").textContent="Microphone permission required. Use the HTTPS website."}}
-function stopVoice(){if(recorder&&recorder.state==="recording"){recorder.stop();document.getElementById("voiceStatus").textContent="Recording ready to play."}}
+async function startVoice(){
+try{
+stream=await navigator.mediaDevices.getUserMedia({audio:true});
+let chunks=[];
+recorder=new MediaRecorder(stream);
+recorder.ondataavailable=e=>chunks.push(e.data);
+recorder.onstop=()=>{
+document.getElementById("voicePlayer").src=URL.createObjectURL(new Blob(chunks,{type:"audio/webm"}));
+stream.getTracks().forEach(t=>t.stop());
+};
+recorder.start();
+document.getElementById("voiceStatus").textContent="Recording...";
+}catch(e){
+document.getElementById("voiceStatus").textContent="Microphone permission required. Open the HTTPS website.";
+}
+}
+function stopVoice(){
+if(recorder&&recorder.state==="recording"){
+recorder.stop();
+document.getElementById("voiceStatus").textContent="Recording ready!";
+}
+}
 </script>
 </body>
 </html>
